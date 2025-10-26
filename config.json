@@ -1,0 +1,93 @@
+{
+  "job_url": "https://wf.wd1.myworkdayjobs.com/en-US/wellsfargojobs/details/Technology-Control-Officer_R-514227?locations=c4f78be1a8f14da0ab49ce1162348a5e",
+  "profile": {
+    "email": "your_email@example.com",
+    "legal_name": "Your Name",
+    "address": "Your Address",
+    "phone": "Your Phone Number",
+    "compensation": "1200000",
+    "citizenship": "India",
+    "gender": "Male",
+    "how_heard": "Wells Fargo Careers Website",
+    "prev_wf_employee": "No",
+    "preferred_name": "No",
+    "current_cell": "Personal Cell",
+    "nation": "India"
+  },
+  "work_experience": [
+    {
+      "job_title": "Data Analyst (Trainee Software Programmer)",
+      "company": "Marlabs LLC",
+      "location": "Syracuse, NY, USA",
+      "current": "No",
+      "from": "05/2024",
+      "to": "02/2025",
+      "description": "Developed comprehensive Power BI dashboards for project cost tracking and resource management, integrating ERP systems with financial data sources for real-time visibility into construction project performance.\\nBuilt automated data pipelines connecting multiple construction databases to Power BI, implementing scheduled refresh processes and monitoring data quality to ensure accurate reporting for project managers and executives.\\nCreated interactive Power BI reports with drill-down capabilities for construction KPIs, supporting business stakeholders with project profitability analysis, safety metrics tracking, and operational efficiency reporting requirements.\\nDesigned Power BI monitoring dashboards for construction operations, performing daily data validation, trend analysis, and collaborating with project teams to resolve data inconsistencies, contributing to 40% reduction in manual reporting tasks."
+    },
+    {
+      "job_title": "Data Analyst (Research Analyst) Intern",
+      "company": "Syracuse University School of Information Studies",
+      "location": "Syracuse, NY, USA",
+      "current": "No",
+      "from": "07/2023",
+      "to": "04/2024",
+      "description": "Extracted and analyzed scheduling system log data using SQL queries and Power BI visualizations, identifying resource allocation bottlenecks and reducing double-booking conflicts by 30% through interactive dashboard insights.\\nDesigned Power BI executive dashboards with advanced visualizations and DAX measures, tracking KPIs including weekly active users, meeting utilization rates, and resource optimization metrics for university administration.\\nMapped business process flows using Power BI process mining visualizations and workflow analytics, identifying improvement opportunities that accelerated system rollout by 3 weeks through data-driven recommendations.\\nLed user acceptance testing coordination with Power BI feedback analytics, compiling user behavior data and satisfaction metrics, delivering 15+ feature enhancements with 80% user satisfaction rate."
+    },
+    {
+      "job_title": "Data Analyst (Graduate Research Fellow)",
+      "company": "Dynamic Sustainability Lab",
+      "location": "Syracuse, NY, USA",
+      "current": "No",
+      "from": "07/2022",
+      "to": "05/2023",
+      "description": "Led comprehensive energy efficiency analysis for $2.11B enterprise portfolio using EnergyCAP Report Designer and Power BI, leveraging advanced SQL analytics and statistical modeling to identify $75K in projected annual savings across 50+ facilities.\\nArchitected enterprise-grade Power BI dashboard ecosystem with DirectQuery integration to SQL Server Analysis Services (SSAS), implementing real-time energy consumption monitoring and predictive analytics for executive decision-making.\\nDeveloped sophisticated DAX measures and custom visualizations for sustainability KPI tracking, translating complex energy data into actionable insights that influenced 15% increase in green initiative funding.\\nImplemented a comprehensive data quality framework with automated validation rules and exception reporting, reducing data inconsistencies by 30% and improving report accuracy for regulatory compliance."
+    },
+    {
+      "job_title": "Lean Six Sigma Consultant Intern",
+      "company": "Stickley Furnitures",
+      "location": "Manlius, NY, USA",
+      "current": "No",
+      "from": "01/2022",
+      "to": "05/2022",
+      "description": "Applied DMAIC methodology to optimize inventory management systems, conducting root cause analysis using Fishbone diagrams and statistical process control, reducing stockouts by 23%.\\nDeveloped predictive models using regression analysis and control charts in Minitab for production quality monitoring, identifying process variations, and implementing corrective actions.\\nConducted value stream mapping exercises and time-motion studies, documenting current state processes and designing future state workflows with waste elimination focus."
+    }
+  ],
+  "education": [
+    {
+      "school": "Syracuse University",
+      "degree": "M.S.",
+      "field": "Management Information Systems",
+      "gpa": "3.67"
+    },
+    {
+      "school": "Mumbai University",
+      "degree": "B.S.",
+      "field": "Computer Engineering",
+      "gpa": "6.9"
+    }
+  ],
+  "app_questions": {
+    "desired_compensation": "1200000",
+    "wf_employee": "No",
+    "sponsorship_required": "No",
+    "non_compete": "No",
+    "fiduciary_appointments": "No",
+    "board_member": "No",
+    "other_work": "No",
+    "ownership_interest": "No",
+    "business_control": "No",
+    "government_position": "No",
+    "political_campaign": "No",
+    "family_relationship": "No",
+    "kpmg_employee": "No"
+  },
+  "vol_dis": {
+    "citizenship_status": "Citizen (India)",
+    "nationality": "India",
+    "gender": "Male"
+  },
+  "paths": {
+    "chromedriver": "/home/jules/.nvm/versions/node/v22.20.0/bin/chromedriver",
+    "resume": "/path/to/your/resume.pdf"
+  }
+}
