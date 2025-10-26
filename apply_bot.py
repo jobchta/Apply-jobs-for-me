@@ -22,47 +22,39 @@ def start_browser(chromedriver_path):
     user_data_dir = tempfile.mkdtemp()
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')
-    chrome_options.add_argument('--window-size=1920,1080')
+    chrome_options.add_argument('--window-size=1920,1920')
     chrome_options.add_argument(f'--user-data-dir={user_data_dir}')
     service = Service(executable_path=chromedriver_path)
     return webdriver.Chrome(service=service, options=chrome_options), user_data_dir
 
+def handle_login(browser, credentials):
+    """Handles the login process."""
+    try:
+        email_field = WebDriverWait(browser, 10).until(
+            EC.presence_of_element_located((By.XPATH, '//input[@id="email"]'))
+        )
+        email_field.send_keys(credentials['email'])
+        logging.info("Email address entered.")
+
+        print("Please enter your password in the browser window and press Enter to continue...")
+        WebDriverWait(browser, timeout=300).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, "div[data-automation-id='My_Account_portlet']"))
+        )
+        logging.info("Login successful.")
+        return True
+    except TimeoutException:
+        logging.error("Login failed. The script timed out waiting for the password or the next page.")
+        return False
+
 def apply_to_job(browser, config):
     """Fills out and submits the job application."""
-    job_url = config['job_url']
     profile = config['profile']
     work_experience = config['work_experience']
     education = config['education']
+    languages = config['languages']
     app_questions = config['app_questions']
     vol_dis = config['vol_dis']
     resume_path = config['paths']['resume']
-
-    try:
-        browser.get(job_url)
-        WebDriverWait(browser, 20).until(EC.presence_of_element_located((By.CSS_SELECTOR, "div[data-automation-id='jobPosting']")))
-        logging.info("Job page loaded successfully.")
-    except TimeoutException:
-        logging.error("Failed to load the job application page.")
-        return
-
-    try:
-        apply_button = WebDriverWait(browser, 20).until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR, "a[data-automation-id='applyButton']"))
-        )
-        apply_button.click()
-        logging.info("Clicked the 'Apply' button.")
-    except TimeoutException:
-        logging.error("Could not find or click the 'Apply' button.")
-        return
-
-    try:
-        apply_manually_button = WebDriverWait(browser, 10).until(
-            EC.element_to_be_clickable((By.XPATH, "//button[text()='Apply Manually']"))
-        )
-        apply_manually_button.click()
-        logging.info("Clicked 'Apply Manually'.")
-    except TimeoutException:
-        logging.warning("'Apply Manually' button not found, continuing.")
 
     # --- Step 1: My Information ---
     try:
@@ -76,6 +68,7 @@ def apply_to_job(browser, config):
         browser.find_element(By.XPATH, '//input[contains(@id,"prevWellsFargoEmployee")]').send_keys(profile["prev_wf_employee"])
     except (TimeoutException, NoSuchElementException) as e:
         logging.error(f"Error filling out personal information: {e}")
+        return False
 
     # --- Step 2: My Experience ---
     try:
@@ -97,6 +90,7 @@ def apply_to_job(browser, config):
             browser.find_element(By.XPATH, f'(//textarea[contains(@id,"roleDescription")])[{i+1}]').send_keys(exp["description"])
     except (TimeoutException, NoSuchElementException) as e:
         logging.error(f"Error filling out work experience: {e}")
+        return False
 
     # --- Step 3: Education ---
     try:
@@ -115,16 +109,19 @@ def apply_to_job(browser, config):
             browser.find_element(By.XPATH, f'(//input[contains(@id,"gpa")])[{i+1}]').send_keys(edu["gpa"])
     except (TimeoutException, NoSuchElementException) as e:
         logging.error(f"Error filling out education: {e}")
+        return False
 
     # --- Step 4: Languages ---
     try:
-        browser.find_element(By.XPATH, '//input[contains(@id,"language")]').send_keys("English")
-        browser.find_element(By.XPATH, '//input[contains(@id,"languageFluency")]').send_keys("Fluent")
-        browser.find_element(By.XPATH, '//input[contains(@id,"languageReading")]').send_keys("3 - Fluent")
-        browser.find_element(By.XPATH, '//input[contains(@id,"languageSpeaking")]').send_keys("3 - Fluent")
-        browser.find_element(By.XPATH, '//input[contains(@id,"languageWriting")]').send_keys("3 - Fluent")
+        for lang in languages:
+            browser.find_element(By.XPATH, '//input[contains(@id,"language")]').send_keys(lang["language"])
+            browser.find_element(By.XPATH, '//input[contains(@id,"languageFluency")]').send_keys(lang["fluency"])
+            browser.find_element(By.XPATH, '//input[contains(@id,"languageReading")]').send_keys(lang["reading"])
+            browser.find_element(By.XPATH, '//input[contains(@id,"languageSpeaking")]').send_keys(lang["speaking"])
+            browser.find_element(By.XPATH, '//input[contains(@id,"languageWriting")]').send_keys(lang["writing"])
     except NoSuchElementException as e:
         logging.error(f"Error filling out languages: {e}")
+        return False
 
     # --- Step 5: Resume/CV upload ---
     try:
@@ -132,6 +129,7 @@ def apply_to_job(browser, config):
         file_input_elem.send_keys(resume_path)
     except NoSuchElementException as e:
         logging.error(f"Error uploading resume: {e}")
+        return False
 
     # --- Step 6: Application Questions ---
     for question, answer in app_questions.items():
@@ -140,6 +138,7 @@ def apply_to_job(browser, config):
             browser.find_element(By.XPATH, radio_xpath).click()
         except NoSuchElementException as e:
             logging.error(f"Error answering application question '{question}': {e}")
+            return False
 
     # --- Step 7: Voluntary Disclosures ---
     try:
@@ -148,14 +147,17 @@ def apply_to_job(browser, config):
         browser.find_element(By.XPATH, '//select[contains(@id,"gender")]').send_keys(vol_dis["gender"])
     except NoSuchElementException as e:
         logging.error(f"Error filling out voluntary disclosures: {e}")
+        return False
 
     # --- Step 8: Terms and Final Submit ---
     try:
         browser.find_element(By.XPATH, '//input[@type="checkbox"]').click()
         browser.find_element(By.XPATH, '//button[contains(text(),"Submit")]').click()
-        logging.info("Application submitted successfully.")
+        logging.info(f"Application submitted successfully for {browser.current_url}")
+        return True
     except NoSuchElementException as e:
-        logging.error(f"Error submitting application: {e}")
+        logging.error(f"Error submitting application for {browser.current_url}: {e}")
+        return False
 
 def main():
     """Main function to run the application bot."""
@@ -165,7 +167,35 @@ def main():
     user_data_dir = None
     try:
         browser, user_data_dir = start_browser(chromedriver_path)
-        apply_to_job(browser, config)
+
+        if not config['job_urls']:
+            logging.error("No job URLs found in the configuration file.")
+            return
+
+        # Login is handled once at the beginning
+        browser.get(config['job_urls'][0])
+        apply_button = WebDriverWait(browser, 20).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, "a[data-automation-id='applyButton']"))
+        )
+        apply_button.click()
+
+        if not handle_login(browser, config['credentials']):
+            return
+
+        # Apply to the first job
+        if not apply_to_job(browser, config):
+            logging.error(f"Failed to apply to the first job: {config['job_urls'][0]}")
+
+        # Apply to the rest of the jobs
+        for job_url in config['job_urls'][1:]:
+            browser.get(job_url)
+            apply_button = WebDriverWait(browser, 20).until(
+                EC.element_to_be_clickable((By.CSS_SELECTOR, "a[data-automation-id='applyButton']"))
+            )
+            apply_button.click()
+            if not apply_to_job(browser, config):
+                logging.error(f"Failed to apply to job: {job_url}")
+
     finally:
         if 'browser' in locals() and browser:
             browser.quit()
