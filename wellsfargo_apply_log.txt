@@ -1,0 +1,2 @@
+INFO:root:Browser closed.
+INFO:root:Cleaned up user data directory: /tmp/tmp1j40yz35

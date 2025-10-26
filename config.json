@@ -1,16 +1,15 @@
 {
   "job_urls": [
-    "YOUR_FIRST_JOB_URL",
-    "YOUR_SECOND_JOB_URL"
+    "https://wf.wd1.myworkdayjobs.com/en-US/wellsfargojobs/details/Technology-Control-Officer_R-514227?locations=c4f78be1a8f14da0ab49ce1162348a5e"
   ],
   "credentials": {
-    "email": "your_email@example.com"
+    "email": "rahulkotian269@gmail.com"
   },
   "profile": {
-    "email": "your_email@example.com",
-    "legal_name": "Your Name",
-    "address": "Your Address",
-    "phone": "Your Phone Number",
+    "email": "rahulkotian269@gmail.com",
+    "legal_name": "Rahul Ravindra Kotian",
+    "address": "53, Kalpana, Shree Mahalakshmi Chs Ltd, Veera Desai Road, Andheri West, Mumbai-400058, Maharashtra, India",
+    "phone": "+91 91671 22112",
     "compensation": "1200000",
     "citizenship": "India",
     "gender": "Male",
@@ -20,25 +19,8 @@
     "current_cell": "Personal Cell",
     "nation": "India"
   },
-  "work_experience": [
-    {
-      "job_title": "Data Analyst (Trainee Software Programmer)",
-      "company": "Marlabs LLC",
-      "location": "Syracuse, NY, USA",
-      "current": "No",
-      "from": "05/2024",
-      "to": "02/2025",
-      "description": "Developed comprehensive Power BI dashboards for project cost tracking and resource management, integrating ERP systems with financial data sources for real-time visibility into construction project performance.\\nBuilt automated data pipelines connecting multiple construction databases to Power BI, implementing scheduled refresh processes and monitoring data quality to ensure accurate reporting for project managers and executives.\\nCreated interactive Power BI reports with drill-down capabilities for construction KPIs, supporting business stakeholders with project profitability analysis, safety metrics tracking, and operational efficiency reporting requirements.\\nDesigned Power BI monitoring dashboards for construction operations, performing daily data validation, trend analysis, and collaborating with project teams to resolve data inconsistencies, contributing to 40% reduction in manual reporting tasks."
-    }
-  ],
-  "education": [
-    {
-      "school": "Syracuse University",
-      "degree": "M.S.",
-      "field": "Management Information Systems",
-      "gpa": "3.67"
-    }
-  ],
+  "work_experience": [],
+  "education": [],
   "languages": [
     {
       "language": "English",
@@ -69,7 +51,7 @@
     "gender": "Male"
   },
   "paths": {
-    "chromedriver": "/path/to/your/chromedriver",
-    "resume": "/path/to/your/resume.pdf"
+    "chromedriver": "/home/jules/.nvm/versions/node/v22.20.0/bin/chromedriver",
+    "resume": "resume.pdf"
   }
 }
