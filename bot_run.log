@@ -1,0 +1,62 @@
+2025-10-26 16:41:12,841 - ERROR - A critical error occurred: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+#0 0x556e69e2d4ca <unknown>
+#1 0x556e698ac566 <unknown>
+#2 0x556e698e7b4c <unknown>
+#3 0x556e698e37c4 <unknown>
+#4 0x556e69932bd3 <unknown>
+#5 0x556e69932286 <unknown>
+#6 0x556e69924403 <unknown>
+#7 0x556e698f0b02 <unknown>
+#8 0x556e698f17c1 <unknown>
+#9 0x556e69df1298 <unknown>
+#10 0x556e69df50ff <unknown>
+#11 0x556e69dd8729 <unknown>
+#12 0x556e69df5ca5 <unknown>
+#13 0x556e69dbdf8f <unknown>
+#14 0x556e69e1a308 <unknown>
+#15 0x556e69e1a4e3 <unknown>
+#16 0x556e69e2c463 <unknown>
+#17 0x7f2a63c65aa4 <unknown>
+#18 0x7f2a63cf2c6c <unknown>
+Traceback (most recent call last):
+  File "/app/job_bot.py", line 48, in run_bot
+    browser = start_browser(config['paths']['chromedriver'])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/job_bot.py", line 42, in start_browser
+    return webdriver.Chrome(service=service, options=options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jules/.pyenv/versions/3.12.12/lib/python3.12/site-packages/selenium/webdriver/chrome/webdriver.py", line 47, in __init__
+    super().__init__(
+  File "/home/jules/.pyenv/versions/3.12.12/lib/python3.12/site-packages/selenium/webdriver/chromium/webdriver.py", line 71, in __init__
+    super().__init__(command_executor=executor, options=options)
+  File "/home/jules/.pyenv/versions/3.12.12/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 263, in __init__
+    self.start_session(capabilities)
+  File "/home/jules/.pyenv/versions/3.12.12/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 366, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jules/.pyenv/versions/3.12.12/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 458, in execute
+    self.error_handler.check_response(response)
+  File "/home/jules/.pyenv/versions/3.12.12/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py", line 233, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+#0 0x556e69e2d4ca <unknown>
+#1 0x556e698ac566 <unknown>
+#2 0x556e698e7b4c <unknown>
+#3 0x556e698e37c4 <unknown>
+#4 0x556e69932bd3 <unknown>
+#5 0x556e69932286 <unknown>
+#6 0x556e69924403 <unknown>
+#7 0x556e698f0b02 <unknown>
+#8 0x556e698f17c1 <unknown>
+#9 0x556e69df1298 <unknown>
+#10 0x556e69df50ff <unknown>
+#11 0x556e69dd8729 <unknown>
+#12 0x556e69df5ca5 <unknown>
+#13 0x556e69dbdf8f <unknown>
+#14 0x556e69e1a308 <unknown>
+#15 0x556e69e1a4e3 <unknown>
+#16 0x556e69e2c463 <unknown>
+#17 0x7f2a63c65aa4 <unknown>
+#18 0x7f2a63cf2c6c <unknown>

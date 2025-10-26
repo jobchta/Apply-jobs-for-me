@@ -1,54 +1,7 @@
 {
-  "job_urls": [
-    "https://wf.wd1.myworkdayjobs.com/en-US/wellsfargojobs/details/Technology-Control-Officer_R-514227?locations=c4f78be1a8f14da0ab49ce1162348a5e"
-  ],
+  "job_urls": ["https://wf.wd1.myworkdayjobs.com/en-US/wellsfargojobs/details/Technology-Control-Officer_R-514227?locations=c4f78be1a8f14da0ab49ce1162348a5e"],
   "credentials": {
     "email": "rahulkotian269@gmail.com"
-  },
-  "profile": {
-    "email": "rahulkotian269@gmail.com",
-    "legal_name": "Rahul Ravindra Kotian",
-    "address": "53, Kalpana, Shree Mahalakshmi Chs Ltd, Veera Desai Road, Andheri West, Mumbai-400058, Maharashtra, India",
-    "phone": "+91 91671 22112",
-    "compensation": "1200000",
-    "citizenship": "India",
-    "gender": "Male",
-    "how_heard": "Wells Fargo Careers Website",
-    "prev_wf_employee": "No",
-    "preferred_name": "No",
-    "current_cell": "Personal Cell",
-    "nation": "India"
-  },
-  "work_experience": [],
-  "education": [],
-  "languages": [
-    {
-      "language": "English",
-      "fluency": "Fluent",
-      "reading": "3 - Fluent",
-      "speaking": "3 - Fluent",
-      "writing": "3 - Fluent"
-    }
-  ],
-  "app_questions": {
-    "desired_compensation": "1200000",
-    "wf_employee": "No",
-    "sponsorship_required": "No",
-    "non_compete": "No",
-    "fiduciary_appointments": "No",
-    "board_member": "No",
-    "other_work": "No",
-    "ownership_interest": "No",
-    "business_control": "No",
-    "government_position": "No",
-    "political_campaign": "No",
-    "family_relationship": "No",
-    "kpmg_employee": "No"
-  },
-  "vol_dis": {
-    "citizenship_status": "Citizen (India)",
-    "nationality": "India",
-    "gender": "Male"
   },
   "paths": {
     "chromedriver": "/home/jules/.nvm/versions/node/v22.20.0/bin/chromedriver",
