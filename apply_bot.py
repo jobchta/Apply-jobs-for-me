@@ -3,6 +3,7 @@ import logging
 import json
 import tempfile
 import shutil
+import os
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -30,20 +31,30 @@ def start_browser(chromedriver_path):
 def handle_login(browser, credentials):
     """Handles the login process."""
     try:
+        password = os.environ.get('WELLS_FARGO_PASSWORD')
+        if not password:
+            logging.error("The 'WELLS_FARGO_PASSWORD' environment variable is not set.")
+            return False
+
         email_field = WebDriverWait(browser, 10).until(
             EC.presence_of_element_located((By.XPATH, '//input[@id="email"]'))
         )
         email_field.send_keys(credentials['email'])
         logging.info("Email address entered.")
 
-        print("Please enter your password in the browser window and press Enter to continue...")
-        WebDriverWait(browser, timeout=300).until(
+        password_field = browser.find_element(By.XPATH, '//input[@id="password"]')
+        password_field.send_keys(password)
+
+        login_button = browser.find_element(By.XPATH, '//button[text()="Sign In"]')
+        login_button.click()
+
+        WebDriverWait(browser, timeout=60).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "div[data-automation-id='My_Account_portlet']"))
         )
         logging.info("Login successful.")
         return True
-    except TimeoutException:
-        logging.error("Login failed. The script timed out waiting for the password or the next page.")
+    except (TimeoutException, NoSuchElementException) as e:
+        logging.error(f"Login failed: {e}")
         return False
 
 def apply_to_job(browser, config):
@@ -172,7 +183,6 @@ def main():
             logging.error("No job URLs found in the configuration file.")
             return
 
-        # Login is handled once at the beginning
         browser.get(config['job_urls'][0])
         apply_button = WebDriverWait(browser, 20).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, "a[data-automation-id='applyButton']"))
@@ -182,11 +192,9 @@ def main():
         if not handle_login(browser, config['credentials']):
             return
 
-        # Apply to the first job
         if not apply_to_job(browser, config):
             logging.error(f"Failed to apply to the first job: {config['job_urls'][0]}")
 
-        # Apply to the rest of the jobs
         for job_url in config['job_urls'][1:]:
             browser.get(job_url)
             apply_button = WebDriverWait(browser, 20).until(
