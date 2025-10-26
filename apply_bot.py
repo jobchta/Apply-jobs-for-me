@@ -21,6 +21,7 @@ def start_browser(chromedriver_path):
     """Starts the Chrome browser with the specified options."""
     user_data_dir = tempfile.mkdtemp()
     chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--headless')
     chrome_options.add_argument('--window-size=1920,1080')
     chrome_options.add_argument(f'--user-data-dir={user_data_dir}')
     service = Service(executable_path=chromedriver_path)
@@ -84,7 +85,6 @@ def apply_to_job(browser, config):
                     EC.element_to_be_clickable((By.XPATH, '//button[@aria-label="Add Work Experience"]'))
                 )
                 add_experience_button.click()
-                # Wait for the new set of fields to appear, you might need to adjust the selector
                 WebDriverWait(browser, 10).until(
                     EC.presence_of_element_located((By.XPATH, f'(//input[contains(@id,"jobTitle")])[{i+1}]'))
                 )

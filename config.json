@@ -1,5 +1,5 @@
 {
-  "job_url": "https://wf.wd1.myworkdayjobs.com/en-US/wellsfargojobs/details/Technology-Control-Officer_R-514227?locations=c4f78be1a8f14da0ab49ce1162348a5e",
+  "job_url": "YOUR_JOB_URL",
   "profile": {
     "email": "your_email@example.com",
     "legal_name": "Your Name",
@@ -87,7 +87,7 @@
     "gender": "Male"
   },
   "paths": {
-    "chromedriver": "/home/jules/.nvm/versions/node/v22.20.0/bin/chromedriver",
+    "chromedriver": "/path/to/your/chromedriver",
     "resume": "/path/to/your/resume.pdf"
   }
 }
